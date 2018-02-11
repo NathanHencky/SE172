@@ -1,0 +1,17 @@
+---
+- name: Terminate instances
+  hosts: local
+  connection: local
+  become: true
+  tasks:
+  - name: Terminate EC2 instance (Ubuntu 14.04 hvm)
+    ec2:
+      key_name: "SE172"
+      instance_type: "t2.micro"
+      image: "ami-965e6bf3"
+      region: "us-east-2"
+      state: 'absent'
+      instance_ids: "i-0aadcb5606462c5b0"
+      ec2_url: "ec2-18-219-152-90.us-east-2.compute.amazonaws.com"
+      aws_access_key: AKIAJAP27WTD4OEPZSDA
+      aws_secret_key: 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

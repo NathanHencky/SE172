@@ -1,0 +1,27 @@
+---
+- hosts: Server1
+  become: yes
+  become_user: root
+  connection: local
+  gather_facts: false
+  tasks:
+  
+  - name: Install python-boto library
+    pip: name=boto
+
+  - name: Provision EC2 instance (Ubuntu 14.04 hvm)
+    ec2:
+      key_name: "SE172"
+      instance_type: "t2.micro"
+      image: "ami-965e6bf3"
+      wait: true
+      count: 1
+      region: "us-east-2"
+      aws_access_key: AKIAJAP27WTD4OEPZSDA
+      aws_secret_key: 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
+
+  - name: Install nginx server
+    apt:
+      name: nginx
+      state: present
+     
